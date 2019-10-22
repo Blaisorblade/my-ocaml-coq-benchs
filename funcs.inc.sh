@@ -40,9 +40,14 @@ benchStdpp() {
   benchLib coq-stdpp dev.2019-09-19.1.9041e6d8
 }
 
+benchBigNum() {
+  benchLib coq-bignums 8.10.0
+}
+
 bench() {
   selectSwitch
-  benchStdpp
+  #benchStdpp
+  benchBigNum
 }
 
 # vim: ft=sh sw=2
