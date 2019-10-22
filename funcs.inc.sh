@@ -46,7 +46,7 @@ benchBigNum() {
 
 bench() {
   selectSwitch
-  #benchStdpp
+  benchStdpp
   benchBigNum
 }
 
