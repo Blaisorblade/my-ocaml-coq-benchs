@@ -31,6 +31,7 @@ setup() {
 
 ####
 
+# timefmt="%U user, %e real, %S sys, %M kb mem"
 benchLib() {
   time $PERFORM opam remove $1
   $(which time) $PERFORM opam install -y $1.$2 2>&1 | tee -a $1-$2-bench-$switchName.log
@@ -50,4 +51,28 @@ bench() {
   benchBigNum
 }
 
+avgReport() {
+  # This "parses" the output from Linux's time command.
+  awk < $i '
+    /user/ { tot+= $1; totsq+= $1*$1; n++ }
+    END {
+      if (n >= 2) {
+        mean = tot / n;
+        meansq = totsq / n
+        varpop = meansq-mean*mean
+        # We need the sample standard deviation (stddev), not the population stddev.
+        stddevsample=sqrt(varpop * n / (n - 1))
+        # \sigma^2_pop = (\Sigma_i X_i^2)/n - \mu^2
+        # \sigma^2_sample = \sigma^2_pop * n/(n-1)
+        print "Mean +/- stddev:", mean, "+/-", stddevsample, "s user time"
+      }
+    }'
+}
+
+avgReports() {
+  for i in run-1/*.log; do
+    echo -n "$i: "
+    avgReport $i
+  done
+}
 # vim: ft=sh sw=2
