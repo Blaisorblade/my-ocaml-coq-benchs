@@ -1,5 +1,5 @@
 # Hey Emacs, this file needs -*- sh -*- mode
-switchName=ocaml-system-coq-8.10.0-no-native
-compilerVersion=4.09.0
+compilerVersion=4.09.0+flambda
+coqVersion=8.10.1+flambda-native
 
 # vim: ft=sh sw=2

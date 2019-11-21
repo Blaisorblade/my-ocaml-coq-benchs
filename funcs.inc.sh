@@ -1,6 +1,7 @@
 # Hey Emacs, this file needs -*- sh -*- mode
 
 set -e
+switchName=ocaml-$compilerVersion-coq-$coqVersion
 
 if [ "$1" = "-n" ]; then
   PERFORM=echo
@@ -20,7 +21,7 @@ createSwitch() {
 }
 
 installCoq() {
-  time $PERFORM opam install -y coq.8.10.0
+  time $PERFORM opam install -y coq.$coqVersion
 }
 
 setup() {
