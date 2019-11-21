@@ -10,6 +10,11 @@ else
   PERFORM=
 fi
 
+setupRepos() {
+  $PERFORM opam repo add --all --set-default bb-overlay https://github.com/Blaisorblade/opam-overlay.git
+  $PERFORM opam repo add iris-dev https://gitlab.mpi-sws.org/iris/opam.git
+}
+
 selectSwitch() {
   echo "Selecting switch $switchName"
   $PERFORM eval `opam env --switch=$switchName --set-switch`
@@ -26,6 +31,7 @@ installCoq() {
 
 setup() {
   set -x
+  setupRepos
   createSwitch
   installCoq
 }
