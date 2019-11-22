@@ -1,5 +1,6 @@
 #!/bin/bash -x
 
+./create-4-09-0-flambda-no-native.sh
 ./create-4-09-0-flambda.sh
 ./create-4-09-0.sh
 
