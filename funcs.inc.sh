@@ -46,7 +46,7 @@ setup() {
 # timefmt="%U user, %e real, %S sys, %M kb mem"
 benchLib() {
   time $PERFORM opam remove $1
-  $(which time) $PERFORM opam install -y $1.$2 2>&1 | tee -a $1-$2-bench-$switchName.log
+  $(which time) $PERFORM opam install -j1 -y $1.$2 2>&1 | tee -a $1-$2-bench-$switchName.log
 }
 
 benchStdpp() {
