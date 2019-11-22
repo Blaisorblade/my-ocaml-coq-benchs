@@ -82,7 +82,7 @@ avgReport() {
 }
 
 avgReports() {
-  for i in run-1/*.log; do
+  for i in "$1"/*.log; do
     echo -n "$i: "
     avgReport $i
   done
