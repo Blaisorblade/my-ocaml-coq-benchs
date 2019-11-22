@@ -23,3 +23,7 @@ flambdaThenNorm
 normThenFlambda
 normThenFlambda
 flambdaThenNorm
+
+mkdir -p run-1
+mv *.log run-1
+./reports.sh
