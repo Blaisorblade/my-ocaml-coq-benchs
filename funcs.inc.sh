@@ -1,6 +1,7 @@
 # Hey Emacs, this file needs -*- sh -*- mode
 
 set -e
+switchName=ocaml-$compilerVersion-coq-$coqVersion
 
 if [ "$1" = "-n" ]; then
   PERFORM=echo
@@ -8,6 +9,11 @@ if [ "$1" = "-n" ]; then
 else
   PERFORM=
 fi
+
+setupRepos() {
+  $PERFORM opam repo add --all --set-default bb-overlay https://github.com/Blaisorblade/opam-overlay.git
+  $PERFORM opam repo add --all --set-default iris-dev https://gitlab.mpi-sws.org/iris/opam.git
+}
 
 selectSwitch() {
   echo "Selecting switch $switchName"
@@ -20,11 +26,12 @@ createSwitch() {
 }
 
 installCoq() {
-  time $PERFORM opam install -y coq.8.10.0
+  time $PERFORM opam install -y coq.$coqVersion
 }
 
 setup() {
   set -x
+  setupRepos
   createSwitch
   installCoq
 }

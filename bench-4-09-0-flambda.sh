@@ -1,5 +1,5 @@
 #!/bin/bash
+. 4-09-0-flambda.inc.sh
 . funcs.inc.sh
-. 4-07-1.inc.sh
 
 bench

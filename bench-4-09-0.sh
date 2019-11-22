@@ -1,5 +1,5 @@
 #!/bin/bash
+. 4-09-0.inc.sh
 . funcs.inc.sh
-. 4-07-1-no-native.inc.sh
 
 bench
