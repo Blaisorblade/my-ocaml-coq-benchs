@@ -10,10 +10,14 @@ else
   PERFORM=
 fi
 
+addRepo() {
+  $PERFORM opam repo add --all --set-default $1 $2
+}
+
 setupRepos() {
-  $PERFORM opam repo add --all --set-default bb-overlay https://github.com/Blaisorblade/opam-overlay.git
-  $PERFORM opam repo add --all --set-default iris-dev https://gitlab.mpi-sws.org/iris/opam.git
-  $PERFORM opam repo add --all --set-default coq-released https://coq.inria.fr/opam/released
+  addRepo bb-overlay https://github.com/Blaisorblade/opam-overlay.git
+  addRepo iris-dev https://gitlab.mpi-sws.org/iris/opam.git
+  addRepo coq-released https://coq.inria.fr/opam/released
 }
 
 selectSwitch() {
