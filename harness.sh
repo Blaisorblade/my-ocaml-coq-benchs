@@ -1,7 +1,4 @@
 #!/bin/bash -x
-opam repo add coq-released --all-switches --set-default https://coq.inria.fr/opam/released
-opam repo add iris-dev --all-switches --set-default git+https://gitlab.mpi-sws.org/FP/opam-dev.git
-
 
 ./create-4-09-0-flambda.sh
 ./create-4-09-0.sh
