@@ -6,4 +6,8 @@ you don't care.
 
 ## Instructions
 
+Beware no warranty. Please be familiar with `bash` and read stuff before executing it.
+
+Also, these benchmark create new opam switches (with hardcoded names) and add opam repos for testing.
+
 In short, just run `./harness.sh`. Or read it, and run the parts you need.
