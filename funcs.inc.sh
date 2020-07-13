@@ -4,6 +4,10 @@ set -e
 # Use same version everywhere, but flambda won't be used without compiler support.
 coqVersion=8.11.2+flambda-native-byte
 switchName=ocaml-$compilerVersion-coq-$coqVersion
+preciseCompilerVersion=$compilerVersion
+if ! grep -q flambda <<< $compilerVersion; then
+  preciseCompilerVersion=ocaml-base-compiler.$compilerVersion
+fi
 
 if [ "$1" = "-n" ]; then
   PERFORM=echo
@@ -28,7 +32,7 @@ selectSwitch() {
 }
 
 createSwitch() {
-  time $PERFORM opam switch create --no-switch -y $switchName $compilerVersion
+  time $PERFORM opam switch create --no-switch -y $switchName $preciseCompilerVersion
   selectSwitch
 }
 
