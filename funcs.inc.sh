@@ -66,8 +66,7 @@ bench() {
 avgReport() {
   # This "parses" the output from Linux's time command.
   awk < $i '
-    /user/ { tot+= $1; totsq+= $1*$1; n++ }
-    END {
+    function report(tot, totsq, n, label) {
       if (n >= 2) {
         mean = tot / n;
         meansq = totsq / n
@@ -76,8 +75,12 @@ avgReport() {
         stddevsample=sqrt(varpop * n / (n - 1))
         # \sigma^2_pop = (\Sigma_i X_i^2)/n - \mu^2
         # \sigma^2_sample = \sigma^2_pop * n/(n-1)
-        print "Mean +/- stddev:", mean, "+/-", stddevsample, "s user time"
+        print "Mean +/- stddev:", mean, "+/-", stddevsample, "s " label " time"
       }
+    }
+    /user/ { utot += $1; utotsq += $1*$1; n++ }
+    END {
+      report(utot, utotsq, n, "user")
     }'
 }
 
