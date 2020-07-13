@@ -1,6 +1,8 @@
 # Hey Emacs, this file needs -*- sh -*- mode
 
 set -e
+# Use same version everywhere, but flambda won't be used without compiler support.
+coqVersion=8.11.2+flambda-native-bytes
 switchName=ocaml-$compilerVersion-coq-$coqVersion
 
 if [ "$1" = "-n" ]; then
