@@ -34,6 +34,7 @@ selectSwitch() {
 createSwitch() {
   time $PERFORM opam switch create --no-switch -y $switchName $preciseCompilerVersion
   selectSwitch
+  opam pin num 1.3
 }
 
 installCoq() {
