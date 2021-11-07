@@ -82,7 +82,8 @@ avgReport() {
   # This "parses" the output from Linux's time command.
   awk < $i '
     function report(tot, totsq, n, label) {
-      if (n >= 2) {
+      # n = 1 will produce NaN stddev, but that's fine.
+      if (n >= 1) {
         mean = tot / n;
         meansq = totsq / n
         varpop = meansq-mean*mean
