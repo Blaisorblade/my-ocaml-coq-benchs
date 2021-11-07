@@ -10,4 +10,10 @@ Beware no warranty. Please be familiar with `bash` and read stuff before executi
 
 Also, these benchmark create new opam switches (with hardcoded names) and add opam repos for testing.
 
-In short, just run `./harness.sh`. Or read it, and run the parts you need.
+In short:
+
+0. install `opam`
+1. setup with `./harness-create.sh` to create the needed switches;
+2. just run `./harness.sh`.
+
+Or read those scripts, and run the parts you need.

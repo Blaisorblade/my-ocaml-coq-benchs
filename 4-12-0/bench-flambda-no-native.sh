@@ -1,5 +1,5 @@
 #!/bin/bash
-. 4-07-1-no-native.inc.sh
+. 4-12-0/flambda-no-native.inc.sh
 . funcs.inc.sh
 
 bench

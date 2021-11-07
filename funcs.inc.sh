@@ -1,10 +1,17 @@
 # Hey Emacs, this file needs -*- sh -*- mode
 
 set -e
+
+which time > /dev/null || { echo "time not found"; exit 1; }
+
 # Use same version everywhere, but flambda won't be used without compiler support.
-coqVersion=8.11.2+flambda-native-byte
+coqVersion=8.13.2+flambda
 switchName=ocaml-$compilerVersion-coq-$coqVersion
-preciseCompilerVersion=$compilerVersion
+
+if [ -z "$preciseCompilerVersion" ]; then
+  preciseCompilerVersion=$compilerVersion
+fi
+
 if ! grep -q flambda <<< $compilerVersion; then
   preciseCompilerVersion=ocaml-base-compiler.$compilerVersion
 fi
@@ -32,13 +39,14 @@ selectSwitch() {
 }
 
 createSwitch() {
-  time $PERFORM opam switch create --no-switch -y $switchName $preciseCompilerVersion
+  $(which time) $PERFORM opam switch create --no-switch -y $switchName $preciseCompilerVersion
   selectSwitch
-  opam pin num 1.3
+  opam pin -y num 1.3
+  opam pin -y zarith 1.12
 }
 
 installCoq() {
-  time $PERFORM opam install -y coq.$coqVersion
+  $(which time) $PERFORM opam install -y coq.$coqVersion
 }
 
 setup() {
@@ -52,16 +60,16 @@ setup() {
 
 # timefmt="%U user, %e real, %S sys, %M kb mem"
 benchLib() {
-  time $PERFORM opam remove $1
+  $(which time) $PERFORM opam remove $1
   $(which time) $PERFORM opam install -j1 -y $1.$2 2>&1 | tee -a $1-$2-bench-$switchName.log
 }
 
 benchStdpp() {
-  benchLib coq-stdpp dev.2020-07-02.1.c8129a37
+  benchLib coq-stdpp dev.2021-01-07.1.43aea848
 }
 
 benchBigNum() {
-  benchLib coq-bignums 8.11.0
+  benchLib coq-bignums 8.13.0
 }
 
 bench() {
@@ -74,7 +82,8 @@ avgReport() {
   # This "parses" the output from Linux's time command.
   awk < $i '
     function report(tot, totsq, n, label) {
-      if (n >= 2) {
+      # n = 1 will produce NaN stddev, but that's fine.
+      if (n >= 1) {
         mean = tot / n;
         meansq = totsq / n
         varpop = meansq-mean*mean
