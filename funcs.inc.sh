@@ -39,6 +39,7 @@ createSwitch() {
   time $PERFORM opam switch create --no-switch -y $switchName $preciseCompilerVersion
   selectSwitch
   opam pin -y num 1.3
+  opam pin -y zarith 1.12
 }
 
 installCoq() {
