@@ -1,6 +1,9 @@
 # Hey Emacs, this file needs -*- sh -*- mode
 
 set -e
+
+which time > /dev/null || { echo "time not found"; exit 1; }
+
 # Use same version everywhere, but flambda won't be used without compiler support.
 coqVersion=8.13.2+flambda
 switchName=ocaml-$compilerVersion-coq-$coqVersion
