@@ -1,4 +1,4 @@
 # Hey Emacs, this file needs -*- sh -*- mode
-compilerVersion=4.10.2+flambda
+compilerVersion=4.12.0+flambda
 
 # vim: ft=sh sw=2
