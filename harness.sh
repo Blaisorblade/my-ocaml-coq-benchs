@@ -3,6 +3,8 @@
 reps=3
 flambdaThenNorm() {
   for i in `seq 1 $reps`; do
+    ./4-12-0/bench-flambda-no-native.sh
+    ./4-12-0/bench-no-native.sh
     ./4-10-2/bench-flambda-no-native.sh
     ./4-10-2/bench-no-native.sh
     ./4-07-1/bench-flambda-no-native.sh
@@ -11,6 +13,8 @@ flambdaThenNorm() {
 }
 normThenFlambda() {
   for i in `seq 1 $reps`; do
+    ./4-12-0/bench-no-native.sh
+    ./4-12-0/bench-flambda-no-native.sh
     ./4-10-2/bench-no-native.sh
     ./4-10-2/bench-flambda-no-native.sh
     ./4-07-1/bench-no-native.sh
