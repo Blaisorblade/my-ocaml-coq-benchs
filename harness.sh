@@ -3,7 +3,7 @@
 reps=10
 flambda() {
   for i in `seq 1 $reps`; do
-    ./4-14-0/bench-flambda-no-native.sh
+    ./4-13-1/bench-flambda-no-native.sh
     ./4-12-0/bench-flambda-no-native.sh
     ./4-10-2/bench-flambda-no-native.sh
     ./4-07-1/bench-flambda-no-native.sh
