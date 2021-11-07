@@ -36,14 +36,14 @@ selectSwitch() {
 }
 
 createSwitch() {
-  time $PERFORM opam switch create --no-switch -y $switchName $preciseCompilerVersion
+  $(which time) $PERFORM opam switch create --no-switch -y $switchName $preciseCompilerVersion
   selectSwitch
   opam pin -y num 1.3
   opam pin -y zarith 1.12
 }
 
 installCoq() {
-  time $PERFORM opam install -y coq.$coqVersion
+  $(which time) $PERFORM opam install -y coq.$coqVersion
 }
 
 setup() {
@@ -57,7 +57,7 @@ setup() {
 
 # timefmt="%U user, %e real, %S sys, %M kb mem"
 benchLib() {
-  time $PERFORM opam remove $1
+  $(which time) $PERFORM opam remove $1
   $(which time) $PERFORM opam install -j1 -y $1.$2 2>&1 | tee -a $1-$2-bench-$switchName.log
 }
 
