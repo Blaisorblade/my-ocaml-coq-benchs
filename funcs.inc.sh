@@ -2,7 +2,7 @@
 
 set -e
 # Use same version everywhere, but flambda won't be used without compiler support.
-coqVersion=8.11.2+flambda-native-byte
+coqVersion=8.13.2+flambda
 switchName=ocaml-$compilerVersion-coq-$coqVersion
 preciseCompilerVersion=$compilerVersion
 if ! grep -q flambda <<< $compilerVersion; then
