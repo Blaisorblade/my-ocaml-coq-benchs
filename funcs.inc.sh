@@ -62,11 +62,11 @@ benchLib() {
 }
 
 benchStdpp() {
-  benchLib coq-stdpp dev.2020-07-02.1.c8129a37
+  benchLib coq-stdpp dev.2021-01-07.1.43aea848
 }
 
 benchBigNum() {
-  benchLib coq-bignums 8.11.0
+  benchLib coq-bignums 8.13.0
 }
 
 bench() {
